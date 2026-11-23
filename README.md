@@ -2,70 +2,139 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-A curated collection of research and open-source projects for **Weight-Space Programming**: reading, reasoning about, constructing, repairing, and editing neural networks directly through their parameters.
+A paper-first collection of research on **Weight-Space Programming** (WSP): using language models or other learned systems to read, understand, construct, repair, and edit neural-network weights.
+
+This repository distinguishes peer-reviewed papers and arXiv preprints from blog posts, because the evidence standards and publication statuses differ.
 
 ## Contents
 
-- [Start Here](#start-here)
-- [Direct Weight-Space Programming](#direct-weight-space-programming)
-- [Weight Reading and Understanding](#weight-reading-and-understanding)
-- [Weight Generation and Construction](#weight-generation-and-construction)
-- [Model Editing and Merging](#model-editing-and-merging)
-- [Community Projects and Tools](#community-projects-and-tools)
-- [Related Resources](#related-resources)
+- [Starter](#starter)
+- [Papers on Direct Weight-Space Programming](#papers-on-direct-weight-space-programming)
+- [Papers Citing the Starter Blog](#papers-citing-the-starter-blog)
+- [Weight-Space Representation and Weight Reading](#weight-space-representation-and-weight-reading)
+- [Weight Generation and Constructed Networks](#weight-generation-and-constructed-networks)
+- [Related Model Editing](#related-model-editing)
+- [Citation Status](#citation-status)
 - [Contributing](#contributing)
 
-## Start Here
+## Starter
 
-- [**Sparks of Weight-Space Programming**](https://rikiyat.github.io/blog/weight-space-programming/) — Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab's introduction to the field, covering weight understanding, network repair and construction, and language-model editing.
-- [RikiyaT/lm_understand-logs](https://github.com/RikiyaT/lm_understand-logs) — Released experiment artifacts and logs associated with the article.
-- [OpenWSP](https://github.com/openwsp/openwsp) — Open tooling for reading, editing, and versioning model weights.
+The starting point for this collection is:
 
-## Direct Weight-Space Programming
+- **[Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights](https://rikiyat.github.io/blog/weight-space-programming/)** — Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab, 2026. MIT CSAIL blog post and released experiment logs.
+  - [Experiment logs and networks](https://github.com/RikiyaT/lm_understand-logs)
+  - Covers weight reading, control-policy repair, network construction, and language-model weight editing.
+  - This is a blog post, not a peer-reviewed paper. Report its experimental evidence separately from later preprints and published work.
 
-Work that directly asks models or agents to inspect or modify neural-network weights.
+## Papers on Direct Weight-Space Programming
 
-- [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/) — Demonstrates identification of network behavior from weights, repairing a control policy, constructing game-playing networks, and editing a language model.
-- [Weight-Space Programming from Scratch on Simple Tasks](https://csinva.io/weight-space-programming-autoresearch/analyze/toy_examples/report.html) — An agent designs and repeatedly edits small transformer weights for bounded algorithmic tasks. [Code](https://github.com/csinva/weight-space-programming-autoresearch)
-- [WSPBench](https://github.com/alexcarterhq/wspbench) — A research preview for comparing weight-analysis and weight-editing conditions.
-- [Weight-Space Claude](https://github.com/nihilistau/weight-space-claude) — A Claude-based harness and experiments for selected weight-reading and construction tasks.
+### 2026
 
-## Weight Reading and Understanding
+- **[Interpretable weight-space programming builds transparent transformers and brain encoding models](https://arxiv.org/abs/2611.18114)** — arXiv:2611.18114, 2026.
+  - Introduces interpretable weight-space programming (iWSP), where an LLM agent iteratively builds transparent transformers and brain encoding models by explicitly hand-crafting weights and features in code.
+  - Uses no backpropagation for parameter construction; prior knowledge, agent feedback, and trial iterations replace gradient training.
 
-- [Consistency Is Not Understanding: Orbit Audits for Neural Field Weight Readers](https://arxiv.org/abs/2611.05798) — Audits weight readers under function-preserving neuron permutations and positive ReLU rescalings.
-- [Permutation Equivariant Neural Functionals](https://arxiv.org/abs/2302.14040) — Neural architectures that process network weights while respecting permutation symmetries. [Code](https://github.com/AllanYangZhou/nfn)
-- [Neural Functional Transformers](https://arxiv.org/abs/2305.13546) — Attention-based models for learning over neural-network parameters. [Code](https://github.com/AllanYangZhou/nfn)
-- [Equivariant Deep Weight Space Alignment](https://arxiv.org/abs/2310.13397) — Learns to align weights from networks with equivalent functions. [Code](https://github.com/AvivNavon/deep-align)
+- **[WeightCode: Installing New Capabilities into Neural Networks via Weight Programming](https://arxiv.org/abs/2611.25476)** — arXiv:2611.25476, 2026.
+  - Frozen language models synthesize executable weight programs that install new capabilities, preserve existing behavior, and can be replayed on compatible networks.
+  - Includes separate evidence for held-out acceptance, replay across trained networks, and sequential editing.
 
-## Weight Generation and Construction
+- **[Consistency Is Not Understanding: Orbit Audits for Neural Field Weight Readers](https://arxiv.org/abs/2611.05798)** — arXiv:2611.05798, 2026.
+  - Audits whether weight readers recognize represented functions when function-preserving neuron permutations and positive ReLU rescalings change raw tensor coordinates.
+  - A useful replication and evaluation reference for claims about LLM weight understanding.
 
-- [HyperNetworks](https://arxiv.org/abs/1609.09106) — A foundational method in which one network generates the parameters of another.
-- [Parameter Prediction for Unseen Deep Architectures](https://arxiv.org/abs/2110.13100) — Predicts parameters for unseen architectures from architecture graphs. [Code](https://github.com/facebookresearch/ppuda)
-- [Thinking Like Transformers](https://arxiv.org/abs/2106.06981) — Introduces RASP, a language for expressing attention-style algorithms.
-- [Tracr: Compiled Transformers as a Laboratory for Interpretability](https://arxiv.org/abs/2301.05062) — Compiles readable programs into transformer weights with known structure. [Code](https://github.com/google-deepmind/tracr)
-- [Learning Transformer Programs](https://arxiv.org/abs/2306.01128) — Learns constrained transformers that can be converted into human-readable programs. [Code](https://github.com/princeton-nlp/TransformerPrograms)
+## Papers Citing the Starter Blog
 
-## Model Editing and Merging
+The following papers or preprints are candidates for this section because public manuscript text, repositories, or project documentation cite or discuss the starter blog.
 
-- [Locating and Editing Factual Associations in GPT](https://arxiv.org/abs/2202.05262) — Localizes and updates factual associations in feed-forward weights. [Code](https://github.com/kmeng01/rome)
-- [Editing Models with Task Arithmetic](https://arxiv.org/abs/2212.04089) — Combines fine-tuned weight differences as task vectors. [Code](https://github.com/mlfoundations/task_vectors)
+| Paper | arXiv / venue | How it relates |
+| --- | --- | --- |
+| [Interpretable weight-space programming builds transparent transformers and brain encoding models](https://arxiv.org/abs/2611.18114) | arXiv:2611.18114 | Related concurrent approach; public project documentation distinguishes iWSP from the MIT CSAIL Sparks blog. |
+| [WeightCode: Installing New Capabilities into Neural Networks via Weight Programming](https://arxiv.org/abs/2611.25476) | arXiv:2611.25476 | Cites the Sparks of Weight-Space Programming blog as related direct weight-editing work. |
 
-## Community Projects and Tools
+> Before adding a citation row, verify it in the paper PDF or arXiv source rather than relying only on a blog, README, GitHub summary, or model card.
 
-- [Weight-Space Programming for the Social Safety Net](https://github.com/ctrimm/weight-space-programming) — Experiments constructing networks that implement piecewise-linear formulas.
-- [Weight-Space Programming from Scratch](https://github.com/csinva/weight-space-programming-autoresearch) — Saved circuits and autonomous experiments on arithmetic, sorting, parity, counting, and Boolean tasks.
-- [Weight-Space Programming Experiments](https://github.com/lextoumbourou/weight-space-programming-experiments) — Cross-model game identification and constrained weight-reading experiments.
-- [Beyond Math](https://github.com/Unjuno/beyond-math-weight-space-programming) — Audits released editing traces and probes whether edits affect non-math behavior.
-- [wsr](https://github.com/suayptalha/wsr) — A toolkit for weight-space reading and programming.
-- [WSP Kit](https://github.com/AuremHQ/weight-space-programming) — Engineering tools for editing and evaluating open-weight models.
+## Weight-Space Representation and Weight Reading
 
-## Related Resources
+- **[Permutation Equivariant Neural Functionals](https://arxiv.org/abs/2302.14040)** — Allan Zhou et al., NeurIPS 2023.
+  - Neural layers for processing weights while respecting permutation symmetries.
+  - [Code](https://github.com/AllanYangZhou/nfn)
 
-- [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html) — Residual-stream, QK, and OV vocabulary for understanding transformer computation.
-- [Awesome Mechanistic Interpretability](https://github.com/sindresorhus/awesome) — For general mechanistic-interpretability resources, see the [Awesome list](https://github.com/sindresorhus/awesome).
+- **[Neural Functional Transformers](https://arxiv.org/abs/2305.13546)** — Allan Zhou et al., NeurIPS 2023.
+  - Attention-based permutation-equivariant models over weight spaces.
+  - [Code](https://github.com/AllanYangZhou/nfn)
+
+- **[Equivariant Deep Weight Space Alignment](https://arxiv.org/abs/2310.13397)** — Aviv Navon et al., ICML 2024.
+  - Learns network alignments under permutation symmetries, relevant to comparing parameter representations.
+  - [Code](https://github.com/AvivNavon/deep-align)
+
+- **[Deep Neural Networks as Point Clouds](https://arxiv.org/abs/2101.08031)** — Balazs? add verified authors and venue. <!-- Replace or remove if citation metadata has not been verified. -->
+
+## Weight Generation and Constructed Networks
+
+- **[HyperNetworks](https://arxiv.org/abs/1609.09106)** — David Ha, Andrew Dai, and Quoc V. Le, 2016.
+  - Generates the weights of another network with a learned weight generator.
+
+- **[Parameter Prediction for Unseen Deep Architectures](https://arxiv.org/abs/2110.13100)** — Boris Knyazev et al., NeurIPS 2021.
+  - Predicts parameters for unseen architectures from architecture graphs.
+  - [Code and dataset](https://github.com/facebookresearch/ppuda)
+
+- **[Thinking Like Transformers](https://arxiv.org/abs/2106.06981)** — Gail Weiss, Yoav Goldberg, and Eran Yahav, ICML 2021.
+  - Introduces RASP for expressing computations that can be compiled into attention-style mechanisms.
+
+- **[Tracr: Compiled Transformers as a Laboratory for Interpretability](https://arxiv.org/abs/2301.05062)** — David Lindner et al., NeurIPS 2023.
+  - Compiles readable programs into transformer weights with known structure.
+  - [Code](https://github.com/google-deepmind/tracr)
+
+- **[Learning Transformer Programs](https://arxiv.org/abs/2306.01128)** — Dan Friedman, Alexander Wettig, and Danqi Chen, NeurIPS 2023.
+  - Learns constrained transformers that can be converted into human-readable programs.
+  - [Code](https://github.com/princeton-nlp/TransformerPrograms)
+
+## Related Model Editing
+
+These papers are useful baselines or mechanisms, but their algorithms are generally not direct LLM weight-programming claims.
+
+- **[Locating and Editing Factual Associations in GPT](https://arxiv.org/abs/2202.05262)** — Kevin Meng et al., NeurIPS 2022.
+  - Localizes factual associations and updates them through targeted feed-forward weight edits.
+  - [Code](https://github.com/kmeng01/rome)
+
+- **[Editing Models with Task Arithmetic](https://arxiv.org/abs/2212.04089)** — Gabriel Ilharco et al., ICLR 2023.
+  - Forms and combines task vectors from fine-tuned weight differences.
+  - [Code](https://github.com/mlfoundations/task_vectors)
+
+## Citation Status
+
+The starter blog is a 2026 release, and the field is advancing rapidly. The collection therefore separates:
+
+1. **Directly cited by the blog or released experiment notes** — links and data from the original release.
+2. **Papers that cite the blog** — papers with a verified reference in the PDF, arXiv source, or bibliography.
+3. **Related papers** — foundational or comparable work that does not necessarily cite the blog.
+
+Record verification evidence in every pull request. For a paper, cite:
+
+- Official arXiv or venue page
+- PDF or arXiv source reference section
+- Exact title and year
+- Whether it cites the blog, uses weight-space programming terminology, or is only foundational/related
 
 ## Contributing
 
-Contributions are welcome. Please include the primary source, a short description, and a clear explanation of how a paper, project, benchmark, or tool relates to weight-space programming.
+We especially welcome paper additions and corrections.
 
-When reporting experiments, distinguish weight reading, direct construction, compilation, learned weight generation, and targeted model editing. Include the target architecture, available information about the weights, feedback or evaluation used, search budget, and evidence or reproducibility artifacts when available.
+Please open a pull request that:
+
+- Adds one paper per entry or organizes several under the appropriate heading
+- Links the paper's official arXiv, conference, or journal page
+- Links code or released artifacts only when relevant
+- States whether it cites the starter blog, performs direct weight-space programming, or is related work
+- Distinguishes a preprint from a peer-reviewed publication
+- Records limitations and whether results have been independently reproduced
+
+**Good proposal format**
+
+```markdown
+- **[Paper title](official-url)** — Authors, venue/year.
+  - One-sentence summary of the contribution.
+  - Citation status: cites the starter blog / does not cite the blog / foundational relation.
+  - [Code or artifact](url), if available.
+  - Key limitation or evidence caveat.
+```
